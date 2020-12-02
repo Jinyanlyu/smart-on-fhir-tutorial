@@ -61,7 +61,7 @@
           //hieght weight
           p.height = getQuantityValueAndUnit(height[0]);
           p.weigth = getQuantityValueAndUnit(weight[0]);
-            p.weight=JSON.stringify(weight[0])
+           // p.weight=JSON.stringify(weight[0])
           //bmi
           p.bmi = (getQuantityValue(weight[0]) / (Math.pow((getQuantityValue(height[0]) / 100), 2))).toFixed(1);
 
@@ -74,7 +74,7 @@
           }
 
           p.hdl = getQuantityValueAndUnit(hdl[0]);
-           p.hdl=JSON.stringify(hdl[0])
+          // p.hdl=JSON.stringify(hdl[0])
 
           p.ldl = getQuantityValueAndUnit(ldl[0]);
 
