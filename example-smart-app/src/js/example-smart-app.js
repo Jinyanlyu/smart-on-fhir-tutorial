@@ -145,16 +145,16 @@
     // Get only numerical value of observations
   //  function getQuantityValue(ob) {
 
-    //  if (typeof ob != 'undefined' &&
-   //       typeof ob.valueQuantity != 'undefined' &&
-   //       typeof ob.valueQuantity.value != 'undefined') {
+    if (typeof ob != 'undefined' &&
+        typeof ob.valueQuantity != 'undefined' &&
+       typeof ob.valueQuantity.value != 'undefined') {
 
-   //       return ob.valueQuantity.value;
+         return ob.valueQuantity.value;
 
-   //   } else {
-    //      return undefined;
-  //    }
- // }
+   } else {
+         return undefined;
+     }
+  }
 
 
 
