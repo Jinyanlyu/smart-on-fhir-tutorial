@@ -15,15 +15,9 @@
                     type: 'Observation',
                     query: {
                       code: {
-                        $or: ['http://loinc.org|8302-2', //height
-                              'http://loinc.org|3137-7',
-                              'http://loinc.org|29463-7', //weight
-                              'http://loinc.org|3141-9',
-                             'http://loinc.org|8462-4',
-                              'http://loinc.org|8480-6', 
-                              'http://loinc.org|2085-9',
-                              'http://loinc.org|2089-1', 
-                              'http://loinc.org|55284-4']
+                        $or: ['http://loinc.org|8302-2','http://loinc.org|29463-7', 'http://loinc.org|8462-4',
+                              'http://loinc.org|8480-6', 'http://loinc.org|2085-9',
+                              'http://loinc.org|2089-1', 'http://loinc.org|55284-4']
                       }
                     }
                   });
@@ -42,23 +36,20 @@
             lname = patient.name[0].family.join(' ');
           }
 
-          var height = byCodes('8302-2', '3137-7');
-          var weight= byCodes('29463-7', '3141-9');
+          var height = byCodes('8302-2');
+          
+          var weight= byCodes('29463-7');
 
           var systolicbp = getBloodPressureValue(byCodes('55284-4'),'8480-6');
           var diastolicbp = getBloodPressureValue(byCodes('55284-4'),'8462-4');
           var hdl = byCodes('2085-9');
           var ldl = byCodes('2089-1');
 
-          // define p patient 
           var p = defaultPatient();
-
           p.birthdate = patient.birthDate;
           p.gender = gender;
           p.fname = fname;
           p.lname = lname;
-
-          //hieght weight
           p.height = getQuantityValueAndUnit(height[0]);
           p.weigth = getQuantityValueAndUnit(weight[0]);
            // p.weight=JSON.stringify(weight[0])
@@ -74,8 +65,6 @@
           }
 
           p.hdl = getQuantityValueAndUnit(hdl[0]);
-          // p.hdl=JSON.stringify(hdl[0])
-
           p.ldl = getQuantityValueAndUnit(ldl[0]);
 
           ret.resolve(p);
@@ -84,7 +73,6 @@
         onError();
       }
     }
-
 
     FHIR.oauth2.ready(onReady, onError);
     return ret.promise();
@@ -124,40 +112,16 @@
     return getQuantityValueAndUnit(formattedBPObservations[0]);
   }
 
-
-//value & unit
   function getQuantityValueAndUnit(ob) {
     if (typeof ob != 'undefined' &&
         typeof ob.valueQuantity != 'undefined' &&
         typeof ob.valueQuantity.value != 'undefined' &&
         typeof ob.valueQuantity.unit != 'undefined') {
-          return ob.valueQuantity.value + ' ' + ob.valueQuantity.unit;//its fine to add .toFixed(1)
+          return ob.valueQuantity.value + ' ' + ob.valueQuantity.unit;
     } else {
       return undefined;
     }
   }
-
-
-
-////////////why
-  //// Get numerical value 
-
-    // Get only numerical value of observations
-  //  function getQuantityValue(ob) {
-
-    if (typeof ob != 'undefined' &&
-        typeof ob.valueQuantity != 'undefined' &&
-       typeof ob.valueQuantity.value != 'undefined') {
-
-         return ob.valueQuantity.value;
-
-   } else {
-         return undefined;
-     }
-  }
-
-
-
 
   window.drawVisualization = function(p) {
     $('#holder').show();
@@ -176,4 +140,3 @@
   };
 
 })(window);
-
