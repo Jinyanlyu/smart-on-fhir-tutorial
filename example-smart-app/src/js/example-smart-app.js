@@ -19,19 +19,10 @@
                         code: {
                             $or: [
                                 'http://loinc.org|8302-2',     // Height
-                                'http://loinc.org|3137-7',     // Height [measured]
-                                'http://loinc.org|3138-5',     // Height [stated]
-                                'http://loinc.org|8308-9',     // Height [standing]
-                                'http://loinc.org|8306-3',     // Height [lying]
-                                'http://loinc.org|8301-4',     // Height [estimated]
+                           
 
                                 'http://loinc.org|29463-7',    // Weight
-                                'http://loinc.org|3141-9',     // Weight
-                                'http://loinc.org|18833-4',    // Weight
-                                'http://loinc.org|3142-7',     // Weight [stated]
-                                'http://loinc.org|75292-3',    // Weight [usual]
-                                'http://loinc.org|8335-2',     // Weight [estimated]
-                                'http://loinc.org|8351-9',     // Weight [without clothes]
+                                
                             ]
                         }
                     }
@@ -52,8 +43,8 @@
                     }
 
                     // Create arrays of JSON objects
-                    var height = byCodes('8302-2', '3137-7', /* [Copy/paste remaining LOINC codes for height here] */);
-                    var weight = byCodes('29463-7', '3141-9', /* [Copy/paste remaining LOINC codes for weight here] */);
+                    var height = byCodes('8302-2');
+                    var weight = byCodes('29463-7', '3141-9');
 
                     // Set default patient object
                     var p = defaultPatient();
