@@ -28,7 +28,7 @@
                     }
                   });
         var meds = smart.patient.api.fetchAll({
-                    type: 'MedicationAdministration',//Medication; MedicationOrder; MedicationStatement; MedicationDispense
+                    type: 'MedicationOrder',//Medication; ; MedicationStatement; MedicationDispense,MedicationAdministration
                     query: {
                       code: {
                         $or: [
