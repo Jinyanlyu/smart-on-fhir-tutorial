@@ -27,6 +27,22 @@
                       }
                     }
                   });
+        var meds = smart.patient.api.fetchAll({
+                    type: 'MedicationAdministration',//Medication; MedicationOrder; MedicationStatement; MedicationDispense
+                    query: {
+                      code: {
+                        $or: [
+                          'https://loinc.org/52471-0/',//medicaton
+                          'https://loinc.org/57833-6/',//prescription
+                          'https://loinc.org/52418-1/',//	Medication Name
+                          'https://loinc.org/80565-5/',//MedicationAdministration
+                          'https://loinc.org/87232-5/',
+                        ]
+
+                      }
+                        
+                    }                            
+                });
 
         $.when(pt, obv).fail(onError);
 
@@ -49,6 +65,11 @@
           var diastolicbp = getBloodPressureValue(byCodes('55284-4'),'8462-4');
           var hdl = byCodes('2085-9');
           var ldl = byCodes('2089-1');
+          
+          console.log(meds)
+          var drug = byMedsCodes('57833-6','52418-1','80565-5','87232-5');
+          console.log(drug)
+
 
           // define p patient 
           var p = defaultPatient();
@@ -61,7 +82,7 @@
           //hieght weight
           p.height = getQuantityValueAndUnit(height[0]);
           p.weigth = getQuantityValueAndUnit(weight[0]);
-            p.weight=JSON.stringify(weight[0])
+            //p.weight=JSON.stringify(weight[0])
           //bmi
           p.bmi = (getQuantityValue(weight[0]) / (Math.pow((getQuantityValue(height[0]) / 100), 2))).toFixed(1);
 
@@ -74,7 +95,7 @@
           }
 
           p.hdl = getQuantityValueAndUnit(hdl[0]);
-           p.hdl=JSON.stringify(hdl[0])
+           //p.hdl=JSON.stringify(hdl[0])
 
           p.ldl = getQuantityValueAndUnit(ldl[0]);
 
