@@ -66,8 +66,7 @@
           var hdl = byCodes('2085-9');
           var ldl = byCodes('2089-1');
           
-          console.log(meds)
-          var drug = byMedsCodes('57833-6','52418-1','80565-5','87232-5');
+          var drug = byMedsCodes('87232-5');
           console.log(drug)
 
 
